@@ -1,5 +1,5 @@
 # WeatherDashboard
 
-##Purpose
+## Purpose
 
-###Made by Jose Rivera 2021
+### Made by Jose Rivera 2021
