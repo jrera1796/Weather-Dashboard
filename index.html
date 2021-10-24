@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assests/css/style.css">
+  <title>Document</title>
+</head>
+<body>
+  <header class="bg-red text-black">
+    <h1 class="bg-primary" style="text-align: center;">Weather Dashboard</h1>
+  </header>
+
+  <section class="main-container" style="display: flex; flex-direction: row; justify-content: space-evenly;">
+  <div class="left-box">
+    <h2>Search For a City</h2>
+  <textarea id="city-input" class="rounded" style="resize: none; width: 100%;"></textarea>
+  <button id="searchBtn" class="bg-primary text-white" style="width: 100%" type="submit">Search</button>
+  <div id="underSearchBtn">
+  
+  </div>
+  </div>
+
+
+  <div class="col-8 border border-dark right-box p-2" style="height: fit-content;">
+    <h2>Current Weather</h2>
+  
+    <div style="flex: 1 50%" class="col-12 position-relative border border-dark top-box">
+      <h4 id ="c-name">Current Date</h4>
+      <h4 id="c-date">Dates 00/00/0000</h4>
+      <img style="margin-left: 80%; width: 10%;" id="c-img"><br>
+      <p id="c-temp">Temp</p>
+      <p id="c-wind">Wind</p>
+      <p  id="c-hum">Humidity</p>
+    </div>
+
+  <div style="flex: 1 50%;" class="col-12 position-relative border border-dark bottom-box">
+  <h4 style="width: 100%; display: block;">5 Day Forecast</h4></div>
+  <div style="flex: 1 50%; justify-content: space-evenly;" class="col-12 d-flex flex-row position-relative border border-dark bottom-box">
+
+    <div class="fdays border border-dark col-2 my-1 py-3">
+      <h5 id="day1"></h5>
+      <img id="img1"><br>
+      <p id="temp1"></p>
+      <p id="wind1"></p>
+      <p class="text-white" id="hum1"></p>
+    </div>
+
+    <div class="fdays border border-dark col-2 my-1 py-3">
+      <h5 id="day2"></h5>
+      <img id="img2"><br>
+      <p id="temp2"></p>
+      <p id="wind2"></p>
+      <p class="text-white" id="hum2"></p>
+    </div>
+
+    <div class="fdays border border-dark col-2 my-1 py-3">
+      <h5 id="day3"></h5>
+      <img id="img3"><br>
+      <p id="temp3"></p>
+      <p id="wind3"></p>
+      <p class="text-white" id="hum3"></p>
+    </div>
+
+    <div class="fdays border border-dark col-2 my-1 py-3">
+      <h5 id="day4"></h5>
+      <img id="img4"><br>
+      <p id="temp4"></p>
+      <p id="wind4"></p>
+      <p class="text-white" id="hum4"></p>
+    </div>
+
+    <div class="fdays border border-dark col-2 my-1 py-3">
+      <h5 id="day5"></h5>
+      <img id="img5"><br>
+      <p id="temp5"></p>
+      <p id="wind5"></p>
+      <p class="text-white" id="hum5"></p>
+    </div>
+  
+  </div>
+  
+  </div>
+
+  </section>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="./assests/js/script.js"></script>
+</body>
+</html>
