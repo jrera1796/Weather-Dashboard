@@ -8,7 +8,7 @@ var dataIA = [0, 8, 16, 24, 32];
 var underSearchBtn = document.getElementById("underSearchBtn");
 var cityName = "";
 var cityList = [];
-
+var momTime= moment(17, "HH")
 
 var getCity = function(){
   cityName = JSON.parse(localStorage.getItem('cityList'));
@@ -86,6 +86,17 @@ else{
   console.log("There's nothing in text input")
 }
 };
+
+
+//Changes gradient to partially imitate night and day
+if(moment().isAfter(momTime)){
+  document.querySelector("#fdays").id = "fdays2";
+  document.querySelector("#fdays").id = "fdays2";
+  document.querySelector("#fdays").id = "fdays2";
+  document.querySelector("#fdays").id = "fdays2";
+  document.querySelector("#fdays").id = "fdays2";
+  console.log(momTime);
+}
 
 $("#searchBtn").on("click", currentWeather);
 
