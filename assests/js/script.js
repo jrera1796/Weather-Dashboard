@@ -9,6 +9,8 @@ var underSearchBtn = document.getElementById("underSearchBtn");
 var cityName = "";
 var cityList = [];
 var momTime= moment(17, "HH")
+var errorBox = document.getElementById("errorbox");
+var rightBox = document.getElementById("rightbox");
 
 var errorHandle = function(){
   document.getElementById("c-name").textContent = "Please enter a valid city";
@@ -31,17 +33,21 @@ var currentWeather = function(){
   .then(function(response){return response.json()})
   .then(function(currentData){
 
-    // if(currentData.cod == "404"){
-    //   rightBox.style = "display: none;";
-    //   errorBox.style = "display: block;";
-    //   errorHandle();
-    //   return;
-    // }
+    if(currentData.cod == "404"){
+      rightBox.style = "visibility: hidden; display: none;";
+      errorBox.style = "display: block;";
+      errorHandle();
+      return;
+    }
 
-    // if(errorBox.style.display === "block"){
-    //   errorBox.style.display = "none";
-    // }
+    if(errorBox.style.display === "block"){
+      errorBox.style.display = "none";
+    }
     
+    if(currentData.cod !== "404"){
+      createChild();
+    }
+
     document.getElementById("rightbox").style = "display: block; visibilty: visible;";
     
     document.getElementById("c-name").textContent = currentData.name;
@@ -113,34 +119,27 @@ var currentWeather = function(){
 
 
 var createChild = function(){
-var cityLocalId = Math.floor(Math.random()*33);
+
 
 var populatedButton = document.createElement("button");
 populatedButton.style = "width: 100%;";
 populatedButton.type = "submit";
 populatedButton.className = "cityBtn text-black my-1";
-populatedButton.id = cityLocalId;
-populatedButton.textContent = cityName;
 
-underSearchBtn.appendChild(populatedButton);
+populatedButton.textContent = cityName.toUpperCase();
 
-cityList.push(cityName);
-localStorage.setItem('cityList',JSON.stringify(cityName));
+underSearchBtn.prepend(populatedButton);
+
+cityList.push(cityName.toUpperCase());
+localStorage.setItem('cityList',JSON.stringify(cityName.toUpperCase()));
 
 }
 
-if($(this).siblings("#city-input").val()){
-  console.log(this);
-createChild();
-}
-else{
-  console.log("There's nothing in text input")
-}
 };
 
 
 //Changes gradient to partially imitate night and day
-if(moment().isBefore(momTime)){
+if(moment().isAfter(momTime)){
   document.querySelector("#fdays").id = "fdays2";
   document.querySelector("#fdays").id = "fdays2";
   document.querySelector("#fdays").id = "fdays2";

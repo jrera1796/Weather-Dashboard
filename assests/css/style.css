@@ -4,34 +4,40 @@
 
 .right-box{
   height: fit-content;
-};
+}
 
 .left-box{
   width: 20%;
-};
+}
 
 .top-box, .bottom-box{
  height: 50%;
-};
+}
 
 #fdays{
   background-color: rgb(89, 105, 184);
   background-image: linear-gradient(rgba(255, 104, 4, 0.89) 1%, rgba(255, 238, 0, 0.637) 40%, white 50%, blue 100%) !important;
-};
+}
 
 #fdays2{
   background-color: rgb(89, 105, 184);
   background-image: linear-gradient(0deg , rgba(255, 104, 4, 0.89) 1%, rgba(255, 238, 0, 0.637) 10%, grey 35%, blue 130%) !important;
-};
+}
 
 #fdays2 h5{
   color: white;
-};
+}
 
 .purple{
   background-color: rgba(110, 39, 110, 0.883);
-};
+}
 
 #c-uvi{
   color: white;
-};
+}
+
+#underSearchBtn{
+  border-top: 3px solid black;
+  
+  width: 100%;
+}
