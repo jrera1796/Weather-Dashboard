@@ -33,7 +33,7 @@ var currentWeather = function(){
   .then(function(response){return response.json()})
   .then(function(currentData){
 
-    if(currentData.cod == "404"){
+    if(currentData.cod == "404" || currentData == "400"){
       rightBox.style = "visibility: hidden; display: none;";
       errorBox.style = "display: block;";
       errorHandle();
@@ -44,7 +44,7 @@ var currentWeather = function(){
       errorBox.style.display = "none";
     }
     
-    if(currentData.cod !== "404"){
+    if(currentData.cod !== "404" || currentData.cod !== "400"){
       createChild();
     }
 
