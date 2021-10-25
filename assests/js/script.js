@@ -10,6 +10,10 @@ var cityName = "";
 var cityList = [];
 var momTime= moment(17, "HH")
 
+var errorHandle = function(){
+  document.getElementById("c-name").textContent = "Please enter a valid city";
+}
+
 var getCity = function(){
   cityName = JSON.parse(localStorage.getItem('cityList'));
   currentWeather();
@@ -20,14 +24,26 @@ var currentWeather = function(){
 
   cityName = $(this).siblings("#city-input").val();
 
-  
-  var apiUrlForecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=fd5967fd42c5816f972f3c2953622952"
-  var apiUrlCurrent = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=fd5967fd42c5816f972f3c2953622952"
-
+  var apiUrlForecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=fd5967fd42c5816f972f3c2953622952";
+  var apiUrlCurrent = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=fd5967fd42c5816f972f3c2953622952";
+ 
   fetch(apiUrlCurrent)
   .then(function(response){return response.json()})
-  .then(function(currentData){console.log(currentData)
-    console.log(currentData);
+  .then(function(currentData){
+
+    // if(currentData.cod == "404"){
+    //   rightBox.style = "display: none;";
+    //   errorBox.style = "display: block;";
+    //   errorHandle();
+    //   return;
+    // }
+
+    // if(errorBox.style.display === "block"){
+    //   errorBox.style.display = "none";
+    // }
+    
+    document.getElementById("rightbox").style = "display: block; visibilty: visible;";
+    
     document.getElementById("c-name").textContent = currentData.name;
     document.getElementById("c-date").textContent = moment().format("MMMM, Do YYYY");
     document.getElementById("c-img").setAttribute("src", "https://openweathermap.org/img/wn/" + currentData.weather[0].icon + "@2x.png");
@@ -39,7 +55,39 @@ var currentWeather = function(){
     document.getElementById("c-temp").textContent = "Temp: " + tempB + "°F";
     document.getElementById("c-wind").textContent =  "Wind Speed: " + currentData.wind.speed + " MPH";
     document.getElementById("c-hum").textContent =  "Humidity: " + currentData.main.humidity + "%";
-  });
+  
+  
+    var apiUrlUVI = "https://api.openweathermap.org/data/2.5/onecall?lat=" + currentData.coord.lat + "&lon=" + currentData.coord.lon + "&appid=fd5967fd42c5816f972f3c2953622952";
+ 
+    fetch(apiUrlUVI)
+    .then(function(response){return response.json()})
+    .then(function(currentUVIData){
+    
+  if(currentUVIData.current.uvi <= 2){
+    document.getElementById("c-uvi").textContent = "UVI: " + currentUVIData.current.uvi;
+    document.getElementById("c-uvi").className = "bg-success";
+    }
+      if(currentUVIData.current.uvi >= 2 && currentUVIData.current.uvi <= 5){
+        document.getElementById("c-uvi").textContent = "UVI: " + currentUVIData.current.uvi;
+        document.getElementById("c-uvi").className = "bg-warning";
+        }
+        if(currentUVIData.current.uvi >= 5 && currentUVIData.current.uvi <= 7){
+          document.getElementById("c-uvi").textContent = "UVI: " + currentUVIData.current.uvi;
+          document.getElementById("c-uvi").className = "bg-danger";
+
+          }
+          if(currentUVIData.current.uvi >= 7 && currentUVIData.current.uvi <= 10){
+            document.getElementById("c-uvi").textContent = "UVI: " + currentUVIData.current.uvi;
+            document.getElementById("c-uvi").className = "bg-danger";
+
+            }
+            if(currentUVIData.current.uvi > 10){
+              document.getElementById("c-uvi").textContent = "UVI: " + currentUVIData.current.uvi;
+              document.getElementById("c-uvi").className = "purple";
+              }
+})
+});
+
 
 
   fetch(apiUrlForecast)
@@ -61,6 +109,9 @@ var currentWeather = function(){
     document.getElementById(imgArray[i]).setAttribute("src", "https://openweathermap.org/img/wn/" + data.list[dataIA[i]].weather[0].icon + "@2x.png");
   }
 });
+
+
+
 var createChild = function(){
 var cityLocalId = Math.floor(Math.random()*33);
 
@@ -89,7 +140,7 @@ else{
 
 
 //Changes gradient to partially imitate night and day
-if(moment().isAfter(momTime)){
+if(moment().isBefore(momTime)){
   document.querySelector("#fdays").id = "fdays2";
   document.querySelector("#fdays").id = "fdays2";
   document.querySelector("#fdays").id = "fdays2";
