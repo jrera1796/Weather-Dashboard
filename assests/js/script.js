@@ -133,7 +133,7 @@ populatedButton.textContent = cityName.toUpperCase();
 underSearchBtn.prepend(populatedButton);
 
 cityList.push(cityName.toUpperCase());
-localStorage.setItem('cityList',JSON.stringify(cityName.toUpperCase()));
+localStorage.setItem('cityList',JSON.stringify(cityList));
 
 }
 
