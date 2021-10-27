@@ -16,7 +16,7 @@
 
 #fdays{
   background-color: rgb(89, 105, 184);
-  background-image: linear-gradient(rgba(255, 104, 4, 0.89) 1%, rgba(255, 238, 0, 0.637) 40%, white 50%, blue 100%) !important;
+  background-image: linear-gradient(rgba(255, 104, 4, 0.89) 1%, rgba(255, 238, 0, 0.637) 5%, white 50%, blue 100%) !important;
 }
 
 #fdays2{

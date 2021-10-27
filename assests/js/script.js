@@ -1,13 +1,13 @@
 var cityInputEl = document.getElementById("#city-input");
 var dayArray = ["day1", "day2", "day3", "day4", "day5"];
 var tempArray = ["temp1", "temp2", "temp3", "temp4", "temp5"];
-var windArray = ["wind1", "wind2", "wind3", "wind4", "wind5"]
+var windArray = ["wind1", "wind2", "wind3", "wind4", "wind5"];
 var humArray = ["hum1", "hum2", "hum3", "hum4", "hum5"];
-var imgArray = ["img1", "img2", "img3", "img4", "img5"]
+var imgArray = ["img1", "img2", "img3", "img4", "img5"];
 var dataIA = [0, 8, 16, 24, 32];
 var underSearchBtn = document.getElementById("underSearchBtn");
 var cityName = "";
-var cityList = [];
+var cityList = JSON.parse(localStorage.getItem('cityList')) || [];
 var momTime= moment(17, "HH")
 var errorBox = document.getElementById("errorbox");
 var rightBox = document.getElementById("rightbox");
@@ -23,9 +23,10 @@ var getCity = function(){
 
 var currentWeather = function(){
   event.preventDefault();
-
+  
+    
   cityName = $(this).siblings("#city-input").val();
-
+  
   var apiUrlForecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=fd5967fd42c5816f972f3c2953622952";
   var apiUrlCurrent = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=fd5967fd42c5816f972f3c2953622952";
  
@@ -37,9 +38,7 @@ var currentWeather = function(){
       rightBox.style = "visibility: hidden; display: none;";
       errorBox.style = "display: block;";
       errorHandle();
-      
       return;
-      
     }
 
     if(errorBox.style.display === "block"){
@@ -96,8 +95,6 @@ var currentWeather = function(){
 })
 });
 
-
-
   fetch(apiUrlForecast)
   .then(function(response){return response.json()})
   .then(function(data){console.log(data)
@@ -118,27 +115,46 @@ var currentWeather = function(){
   }
 });
 
-
-
 var createChild = function(){
-
 
 var populatedButton = document.createElement("button");
 populatedButton.style = "width: 100%;";
 populatedButton.type = "submit";
 populatedButton.className = "cityBtn text-black my-1";
-
 populatedButton.textContent = cityName.toUpperCase();
 
 underSearchBtn.prepend(populatedButton);
 
 cityList.push(cityName.toUpperCase());
 localStorage.setItem('cityList',JSON.stringify(cityList));
-
 }
+
 
 };
 
+function recentCity(){
+  
+  for(var i = 0; i < cityList.length; i++){
+
+    var underSearchBtn = document.getElementById("underSearchBtn");
+    var underSrchBtnPop = document.createElement("button")
+    underSrchBtnPop.style = "width: 100%;";
+    underSrchBtnPop.type = "submit";
+    underSrchBtnPop.className = "cityBtn text-black my-1";
+    underSrchBtnPop.textContent = cityList[i];
+
+    underSearchBtn.appendChild(underSrchBtnPop);
+  }
+
+  $(".cityBtn").on("click", function(popButton){
+    cityName = this.textContent;
+    console.log(this.textContent, + 2);
+    console.log(cityName);
+    currentWeather();
+
+  });
+
+};
 
 //Changes gradient to partially imitate night and day
 if(moment().isAfter(momTime)){
@@ -151,4 +167,3 @@ if(moment().isAfter(momTime)){
 }
 
 $("#searchBtn").on("click", currentWeather);
-
