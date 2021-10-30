@@ -4,28 +4,35 @@ var tempArray = ["temp1", "temp2", "temp3", "temp4", "temp5"];
 var windArray = ["wind1", "wind2", "wind3", "wind4", "wind5"];
 var humArray = ["hum1", "hum2", "hum3", "hum4", "hum5"];
 var imgArray = ["img1", "img2", "img3", "img4", "img5"];
-var dataIA = [0, 8, 16, 24, 32];
+var dataIA = [1, 9, 17, 25, 33];
 var underSearchBtn = document.getElementById("underSearchBtn");
 var cityName = "";
 var cityList = JSON.parse(localStorage.getItem('cityList')) || [];
 var momTime= moment(17, "HH")
 var errorBox = document.getElementById("errorbox");
 var rightBox = document.getElementById("rightbox");
+var cityButton = document.getElementsByClassName("cityBtn")
 
 var errorHandle = function(){
   document.getElementById("c-name").textContent = "Please enter a valid city";
 }
 
-var getCity = function(){
-  cityName = JSON.parse(localStorage.getItem('cityList'));
-  currentWeather();
-};
+// var getCity = function(){
+//   cityName = JSON.parse(localStorage.getItem('cityList'));
+//   currentWeather();
+// };
 
-var currentWeather = function(){
-  event.preventDefault();
+var currentWeather = function(event){
+  console.log(event);
+  console.log("Origin recent");
   
+
+  if(event.type =="click"){
+    event.preventDefault();
+    cityName = $(this).siblings("#city-input").val();
+  }
     
-  cityName = $(this).siblings("#city-input").val();
+  
   
   var apiUrlForecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=fd5967fd42c5816f972f3c2953622952";
   var apiUrlCurrent = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=fd5967fd42c5816f972f3c2953622952";
@@ -116,7 +123,9 @@ var currentWeather = function(){
 });
 
 var createChild = function(){
-
+if(cityList.includes(cityName.toUpperCase())){
+  return;
+}
 var populatedButton = document.createElement("button");
 populatedButton.style = "width: 100%;";
 populatedButton.type = "submit";
@@ -125,8 +134,17 @@ populatedButton.textContent = cityName.toUpperCase();
 
 underSearchBtn.prepend(populatedButton);
 
+
 cityList.push(cityName.toUpperCase());
 localStorage.setItem('cityList',JSON.stringify(cityList));
+
+$(".cityBtn").on("click", function(popButton){
+  cityName = this.textContent;
+  console.log(this.textContent, + 2);
+  console.log(cityName);
+  currentWeather({type:"embeddedclick"});
+
+});
 }
 
 
@@ -143,14 +161,14 @@ function recentCity(){
     underSrchBtnPop.className = "cityBtn text-black my-1";
     underSrchBtnPop.textContent = cityList[i];
 
-    underSearchBtn.appendChild(underSrchBtnPop);
+    underSearchBtn.prepend(underSrchBtnPop);
   }
 
   $(".cityBtn").on("click", function(popButton){
     cityName = this.textContent;
     console.log(this.textContent, + 2);
     console.log(cityName);
-    currentWeather();
+    currentWeather({type:"embeddedclick"});
 
   });
 
@@ -167,3 +185,8 @@ if(moment().isAfter(momTime)){
 }
 
 $("#searchBtn").on("click", currentWeather);
+recentCity();
+
+function eraseText() {
+  document.getElementById("city-input").value = "";
+}

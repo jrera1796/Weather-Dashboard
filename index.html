@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="./assests/css/style.css">
-  <title>Document</title>
+  <title>Weather Dashboard</title>
 </head>
 <body>
   <header class="bg-red text-black">
@@ -14,9 +14,9 @@
   </header>
 
   <section class="main-container" style="display: flex; flex-direction: row; justify-content: space-evenly;">
-  <div class="left-box">+
+  <div class="left-box">
     <h2>Search For a City</h2>
-  <textarea id="city-input" class="rounded" style="resize: none; width: 100%;"></textarea>
+  <textarea id="city-input" class="rounded" style="resize: none; width: 100%;" onclick="javascript:eraseText();"></textarea>
   <button id="searchBtn" class="bg-primary text-white" style="width: 100%" type="submit">Search</button>
   <div class="my-2" id="underSearchBtn">
   
@@ -24,11 +24,11 @@
   </div>
 
 
-<div id="errorbox" class="col-8 border border-dark right-box p-2" style="display: none">Please enter a valid city!</div>
-  <div id="rightbox" class="col-8 border border-dark right-box p-2" style="visibility: hidden; display: block;">
+<div id="errorbox" class="col-8  right-box p-2" style="display: none">Please enter a valid city!</div>
+  <div id="rightbox" class="col-8  right-box p-2" style="visibility: hidden; display: block;">
     <h2>Current Weather</h2>
   
-    <div style="flex: 1 50%" class="col-12 position-relative border border-dark top-box">
+    <div style="flex: 1 50%" class="col-12 position-relative  top-box">
       <h4 id ="c-name"></h4>
       <h4 id="c-date"></h4>
       <img style="margin-left: 80%; width: 10%;" id="c-img"><br>
@@ -38,12 +38,12 @@
       <p id="c-uvi"></p>
     </div>
 
-  <div style="flex: 1 50%;" class="col-12 position-relative border border-dark bottom-box">
-  <h4 style="width: 100%; display: block;">5 Day Forecast</h4></div>
+  <div style="flex: 1 50%;" class="col-12 position-relative  bottom-box">
+  <h4 style="width: 100%; display: block; color: white;">5 Day Forecast</h4></div>
 
-  <div style="flex: 1 50%; justify-content: space-evenly;" class="col-12 d-flex flex-row position-relative border border-dark bottom-box">
+  <div style="flex: 1 50%; justify-content: space-evenly;" class="col-12 d-flex flex-row position-relative  bottom-box">
 
-    <div id="fdays" class="border border-dark col-2 my-1 py-3">
+    <div id="fdays" class=" col-2 my-1 py-3">
       <h5 id="day1"></h5>
       <img id="img1"><br>
       <p id="temp1"></p>
@@ -51,7 +51,7 @@
       <p class="text-white" id="hum1"></p>
     </div>
 
-    <div id="fdays" class="border border-dark col-2 my-1 py-3">
+    <div id="fdays" class=" col-2 my-1 py-3">
       <h5 id="day2"></h5>
       <img id="img2"><br>
       <p id="temp2"></p>
@@ -59,7 +59,7 @@
       <p class="text-white" id="hum2"></p>
     </div>
 
-    <div id="fdays" class="border border-dark col-2 my-1 py-3">
+    <div id="fdays" class=" col-2 my-1 py-3">
       <h5 id="day3"></h5>
       <img id="img3"><br>
       <p id="temp3"></p>
@@ -67,7 +67,7 @@
       <p class="text-white" id="hum3"></p>
     </div>
 
-    <div id="fdays" class="border border-dark col-2 my-1 py-3">
+    <div id="fdays" class=" col-2 my-1 py-3">
       <h5 id="day4"></h5>
       <img id="img4"><br>
       <p id="temp4"></p>
@@ -75,7 +75,7 @@
       <p class="text-white" id="hum4"></p>
     </div>
 
-    <div id="fdays" class="border border-dark col-2 my-1 py-3">
+    <div id="fdays" class=" col-2 my-1 py-3">
       <h5 id="day5"></h5>
       <img id="img5"><br>
       <p id="temp5"></p>
