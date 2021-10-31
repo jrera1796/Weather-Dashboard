@@ -17,8 +17,7 @@ This website is a simple and informative weather search using openweather's API.
 https://jrera1796.github.io/Weather-Dashboard/
 
 ## Screenshot
-
-
+![Weather Dashboard](/assets/images/weatherdash.png/?raw=true "Weather Dashboard")
 
 
 ### Made by Jose Rivera 2021

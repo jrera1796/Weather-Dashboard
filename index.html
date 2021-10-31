@@ -16,7 +16,7 @@
   <section class="main-container" style="display: flex; flex-direction: row; justify-content: space-evenly;">
   <div class="left-box">
     <h2>Search For a City</h2>
-  <textarea id="city-input" class="rounded" style="resize: none; width: 100%;" onclick="javascript:eraseText();"></textarea>
+  <input type="text" id="city-input" class="rounded" style="resize: none; width: 100%; margin-bottom: 2%;" onfocus="this.value=''"></input>
   <button id="searchBtn" class="bg-primary text-white" style="width: 100%" type="submit">Search</button>
   <div class="my-2" id="underSearchBtn">
   
@@ -91,5 +91,9 @@
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="./assests/js/script.js"></script>
+  <footer class="bg-red text-black">
+    <h6 class="bg-primary px-3" style="text-align: right; width: 100%;">Made by Jose Rivera 2021</h6>
+  </footer>
 </body>
+
 </html>

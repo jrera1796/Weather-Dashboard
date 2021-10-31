@@ -23,10 +23,7 @@ var errorHandle = function(){
 // };
 
 var currentWeather = function(event){
-  console.log(event);
-  console.log("Origin recent");
-  
-
+ 
   if(event.type =="click"){
     event.preventDefault();
     cityName = $(this).siblings("#city-input").val();
@@ -104,7 +101,7 @@ var currentWeather = function(event){
 
   fetch(apiUrlForecast)
   .then(function(response){return response.json()})
-  .then(function(data){console.log(data)
+  .then(function(data){
  
     for(var i = 0; i < 5; i++){
     document.getElementById(dayArray[i]).textContent = data.list[dataIA[i]].dt_txt.slice(5, data.list[dataIA[i]].dt_txt.length - 9) + "-2021";
@@ -166,8 +163,6 @@ function recentCity(){
 
   $(".cityBtn").on("click", function(popButton){
     cityName = this.textContent;
-    console.log(this.textContent, + 2);
-    console.log(cityName);
     currentWeather({type:"embeddedclick"});
 
   });
@@ -175,18 +170,24 @@ function recentCity(){
 };
 
 //Changes gradient to partially imitate night and day
-if(moment().isAfter(momTime)){
-  document.querySelector("#fdays").id = "fdays2";
-  document.querySelector("#fdays").id = "fdays2";
-  document.querySelector("#fdays").id = "fdays2";
-  document.querySelector("#fdays").id = "fdays2";
-  document.querySelector("#fdays").id = "fdays2";
-  console.log(momTime);
-}
+// if(moment().isAfter(momTime)){
+//   document.querySelector("#fdays").id = "fdays2";
+//   document.querySelector("#fdays").id = "fdays2";
+//   document.querySelector("#fdays").id = "fdays2";
+//   document.querySelector("#fdays").id = "fdays2";
+//   document.querySelector("#fdays").id = "fdays2";
+//   console.log(momTime);
+// }
 
 $("#searchBtn").on("click", currentWeather);
+
 recentCity();
 
-function eraseText() {
-  document.getElementById("city-input").value = "";
-}
+
+var input = document.getElementById("city-input");
+input.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    document.getElementById("searchBtn").click();
+  }
+});
