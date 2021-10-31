@@ -137,8 +137,7 @@ localStorage.setItem('cityList',JSON.stringify(cityList));
 
 $(".cityBtn").on("click", function(popButton){
   cityName = this.textContent;
-  console.log(this.textContent, + 2);
-  console.log(cityName);
+  
   currentWeather({type:"embeddedclick"});
 
 });
